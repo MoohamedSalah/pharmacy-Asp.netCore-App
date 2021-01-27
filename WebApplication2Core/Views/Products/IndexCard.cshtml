@@ -1,0 +1,24 @@
+﻿@model IEnumerable<Product>
+@{
+    ViewData["Title"] = "IndexCard";
+
+}
+<div class="card-deck">
+    @foreach (var product in Model)
+    {
+        <div class="card mb-3" style=" min-width:30rem;max-width:30.5%">
+            <div class="card-header">
+                <h3>@product.Name</h3>
+            </div>
+            @{
+                var Path = "~/images/" + product.Photopath ?? "noimage.jpg";
+            }
+            <img class="card-img-top image-Thems " src=@Path asp-append-version="true" />
+            <div class="card-footer text-center">
+                <a asp-action="Details" asp-route-Id="@product.Id" class="btn btn-primary">View</a>
+                <a asp-action="Edit" asp-route-Id="@product.Id" class="btn btn-info ">Edit</a>
+                <a asp-action="Delete" asp-route-Id="@product.Id" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+    }
+</div>
